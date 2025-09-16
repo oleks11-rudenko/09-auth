@@ -6,7 +6,7 @@ import { checkServerSession } from './lib/api/serverApi';
 const publicRoutes = ['/sign-in', '/sign-up'];
 const privateRoutes = ['/notes', '/profile'];
 
-export default async function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get('accessToken')?.value;
   const refreshToken = cookieStore.get('refreshToken')?.value;
@@ -68,14 +68,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/profile',
-    '/profile/:path*',
-    '/notes',
-    '/notes/:path*',
-    '/notes/action/:action*',
-    '/notes/filter/:filter*',
-    '/sign-in',
-    '/sign-up',
-  ],
+  matcher: ['/profile', '/profile/:path*', '/notes', '/notes/:path*', '/sign-in', '/sign-up'],
 };
