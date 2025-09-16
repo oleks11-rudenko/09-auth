@@ -3,9 +3,9 @@
 import css from './NoteForm.module.css';
 import type { NewNote } from '../../types/note';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
+import { createNote } from '@/lib/api/clientApi';
 
 export default function NoteForm() {
   const queryCLient = useQueryClient();
@@ -24,6 +24,8 @@ export default function NoteForm() {
     onSuccess: () => {
       queryCLient.invalidateQueries({ queryKey: ['notes'] });
       clearDraft();
+      console.log('OK');
+
       router.push('/notes/filter/All');
     },
   });
@@ -48,7 +50,6 @@ export default function NoteForm() {
           className={css.input}
         />
       </div>
-
       <div className={css.formGroup}>
         <label htmlFor="content">Content</label>
         <textarea
@@ -60,7 +61,6 @@ export default function NoteForm() {
           className={css.content}
         />
       </div>
-
       <div className={css.formGroup}>
         <label htmlFor="tag">Tag</label>
         <select
@@ -77,7 +77,6 @@ export default function NoteForm() {
           <option value="Shopping">Shopping</option>
         </select>
       </div>
-
       <div className={css.actions}>
         <button onClick={handleCancel} type="button" className={css.cancelButton}>
           Cancel

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import css from './Header.module.css';
-import TagsMenu from '../TagsMenu/TagsMenu';
-import { tags } from '@/lib/api';
+import AuthNavigation from '../AuthNavigation/AuthNavigation';
 
 export default function Header() {
   return (
@@ -14,7 +13,7 @@ export default function Header() {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <TagsMenu tags={tags} />
+          <AuthNavigation />
         </ul>
       </nav>
     </header>

@@ -5,7 +5,8 @@ import 'modern-normalize';
 import './globals.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import { getPageUrl } from '@/lib/api';
+import { getPageUrl } from '@/lib/api/clientApi';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -56,16 +57,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <TanStackProvider>
-        <body className={roboto.variable}>
-          <Header />
-          <main>
-            {children}
-            {modal}
-          </main>
-          <Footer />
-        </body>
-      </TanStackProvider>
+      <body className={roboto.variable}>
+        <TanStackProvider>
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+              {modal}
+            </main>
+            <Footer />
+          </AuthProvider>
+        </TanStackProvider>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { tags } from '@/lib/api';
+import { tags } from '@/lib/api/clientApi';
 import css from './SidebarNotes.module.css';
 
 export default function SidebarNotes() {

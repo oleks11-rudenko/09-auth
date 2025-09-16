@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import css from './NotFound.module.css';
-import { getPageUrl } from '@/lib/api';
+import { getPageUrl } from '@/lib/api/clientApi';
 
 export const metadata: Metadata = {
   title: 'NoteHub - Managing online notes',
