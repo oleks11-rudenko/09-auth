@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { nextServer } from './api';
 import { NewNote, Note } from '@/types/note';
 import { User } from '@/types/user';
@@ -17,7 +16,7 @@ export interface NotesHttpResponse {
 }
 
 export async function fetchNotes(page: number, search: string, tag?: string | undefined) {
-  const response = await axios.get<NotesHttpResponse>('/notes/', {
+  const response = await nextServer.get<NotesHttpResponse>('/notes/', {
     params: {
       ...(search !== '' && { search }),
       tag,
@@ -29,17 +28,17 @@ export async function fetchNotes(page: number, search: string, tag?: string | un
 }
 
 export async function fetchNoteById(noteId: Note['id']) {
-  const response = await axios.get<Note>(`/notes/${noteId}`);
+  const response = await nextServer.get<Note>(`/notes/${noteId}`);
   return response.data;
 }
 
 export async function createNote(newNote: NewNote) {
-  const response = await axios.post<Note>('/notes/', newNote);
+  const response = await nextServer.post<Note>('/notes/', newNote);
   return response.data;
 }
 
 export async function deleteNote(noteId: Note['id']) {
-  const response = await axios.delete<Note>(`/notes/${noteId}`);
+  const response = await nextServer.delete<Note>(`/notes/${noteId}`);
   return response.data;
 }
 
